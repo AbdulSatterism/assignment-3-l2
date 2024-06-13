@@ -19,7 +19,6 @@ const updateBikeIntoDB = async (id: string, payload: Partial<TBike>) => {
 };
 
 const deleteBikeFromDB = async (id: string) => {
-  console.log(id);
   const result = await Bike.findByIdAndUpdate(
     id,
     { isAvailable: false },

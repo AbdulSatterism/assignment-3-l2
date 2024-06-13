@@ -1,9 +1,9 @@
+import { USER_ROLE } from './../auth/auth.const';
 import express from 'express';
 import { BikeControllers } from './bike.controller';
 import validateRequest from '../../middleware/validateRequest';
 import { bikeValidations } from './bike.validation';
 import auth from '../../middleware/auth';
-import { USER_ROLE } from '../auth/auth.const';
 
 const router = express.Router();
 
@@ -14,14 +14,19 @@ router.post(
   BikeControllers.createBike,
 );
 
-router.get('/', BikeControllers.getAllBikes);
+router.get(
+  '/',
+  auth(USER_ROLE.admin, USER_ROLE.user),
+  BikeControllers.getAllBikes,
+);
 
 router.put(
   '/:id',
+  auth(USER_ROLE.admin),
   validateRequest(bikeValidations.updateBikeValidationSchema),
   BikeControllers.updateBike,
 );
 
-router.delete('/:id', BikeControllers.deleteBike);
+router.delete('/:id', auth(USER_ROLE.admin), BikeControllers.deleteBike);
 
 export const BikeRoutes = router;
