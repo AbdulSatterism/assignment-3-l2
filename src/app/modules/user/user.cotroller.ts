@@ -15,18 +15,20 @@ const createUser = catchAsync(async (req, res) => {
 });
 
 const getUser = catchAsync(async (req, res) => {
-  const result = await UserServices.getUserFromDB();
+  const { userId } = req.user;
+  const result = await UserServices.getUserFromDB(userId);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'User retrived successfully',
+    message: 'User retrieved successfully',
     data: result,
   });
 });
 
 const updateUserMe = catchAsync(async (req, res) => {
-  const result = await UserServices.updateUserMeFromDB();
+  const { userId } = req.user;
+  const result = await UserServices.updateUserMeFromDB(userId, req.body);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

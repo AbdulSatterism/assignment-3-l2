@@ -6,13 +6,13 @@ const createUserIntoDB = async (payload: TUser) => {
   return result;
 };
 
-const getUserFromDB = async () => {
-  const result = await User.findOne();
+const getUserFromDB = async (id: string) => {
+  const result = await User.findById(id);
   return result;
 };
 
-const updateUserMeFromDB = async () => {
-  const result = await User.findOneAndUpdate();
+const updateUserMeFromDB = async (id: string, payload: Partial<TUser>) => {
+  const result = await User.findByIdAndUpdate(id, payload, { new: true });
   return result;
 };
 
