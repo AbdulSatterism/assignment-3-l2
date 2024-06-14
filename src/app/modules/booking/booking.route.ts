@@ -21,4 +21,10 @@ router.put(
   BookingControllers.returnBooking,
 );
 
+router.get(
+  '/',
+  auth(USER_ROLE.admin, USER_ROLE.user),
+  BookingControllers.getBooking,
+);
+
 export const BookingRoutes = router;

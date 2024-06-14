@@ -24,7 +24,18 @@ const returnBooking = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'bike booking successfully',
+    message: 'bike return update successfully',
+    data: result,
+  });
+});
+
+const getBooking = catchAsync(async (req, res) => {
+  const result = await BookingServices.getAllBookingBike();
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'all booking retrieved  successfully',
     data: result,
   });
 });
@@ -32,4 +43,5 @@ const returnBooking = catchAsync(async (req, res) => {
 export const BookingControllers = {
   createBooking,
   returnBooking,
+  getBooking,
 };

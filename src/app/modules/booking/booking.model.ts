@@ -19,7 +19,7 @@ const bookingSchema = new Schema<TBooking>({
   },
   returnTime: {
     type: String,
-    default: null,
+    default: '',
   },
   totalCost: {
     type: Number,
