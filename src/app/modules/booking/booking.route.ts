@@ -15,4 +15,10 @@ router.post(
   BookingControllers.createBooking,
 );
 
+router.put(
+  '/:id/return',
+  auth(USER_ROLE.admin),
+  BookingControllers.returnBooking,
+);
+
 export const BookingRoutes = router;
