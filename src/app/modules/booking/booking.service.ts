@@ -6,22 +6,33 @@ import { Booking } from './booking.model';
 import { Bike } from '../bike/bike.model';
 
 const createBookingIntoDB = async (payload: TBooking) => {
-  const user = await User.findById(payload?.userId);
+  const { userId, bikeId } = payload;
+  const user = await User.findById(userId);
 
   if (!user) {
     throw new AppError(httpStatus.NOT_FOUND, 'user not found');
   }
 
-  const bike = await Bike.findById(payload?.bikeId);
-  if (!bike) {
+  const bikeExist = await Bike.findById(bikeId);
+  if (!bikeExist) {
     throw new AppError(httpStatus.NOT_FOUND, 'bike is not found');
   }
 
-  if (!bike.isAvailable) {
+  if (!bikeExist.isAvailable) {
     throw new AppError(httpStatus.FORBIDDEN, 'bike is not available');
   }
 
+  //update isAvailable status
+  // if (bikeExist.isAvailable) {
+  //   await Bike.findByIdAndUpdate(
+  //     { _id: bikeExist?._id },
+  //     { isAvailable: false },
+  //     { new: true },
+  //   );
+  // }
+
   const result = await Booking.create(payload);
+
   return result;
 };
 
