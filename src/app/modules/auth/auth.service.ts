@@ -9,7 +9,7 @@ const loginUser = async (payload: TLogin) => {
   const { email, password } = payload;
 
   // check user exist or not
-  const user = await User.isUserExistByEmail(email);
+  const user = await User.findOne({ email: email }).select('+password');
 
   if (!user) {
     throw new AppError(httpStatus.NOT_FOUND, 'this user not found');
@@ -23,8 +23,12 @@ const loginUser = async (payload: TLogin) => {
   }
 
   //   jwt access token
+  type TJWTPayload = {
+    userId: any;
+    role: 'admin' | 'user';
+  };
 
-  const jwtPayload = {
+  const jwtPayload: TJWTPayload = {
     userId: user?._id,
     role: user?.role,
   };
