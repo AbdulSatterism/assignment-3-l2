@@ -39,7 +39,9 @@ const loginUser = async (payload: TLogin) => {
     config.jwt_access_expire_in as string,
   );
 
-  return accessToken;
+  const userRes = await User.findOne({ email: email });
+
+  return { accessToken, userRes };
 };
 
 export const AuthServices = {
