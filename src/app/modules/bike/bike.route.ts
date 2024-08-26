@@ -9,16 +9,12 @@ const router = express.Router();
 
 router.post(
   '/',
-  auth(USER_ROLE.admin),
+  // auth(USER_ROLE.admin),
   validateRequest(bikeValidations.createBikeValidationSchema),
   BikeControllers.createBike,
 );
 
-router.get(
-  '/',
-  auth(USER_ROLE.admin, USER_ROLE.user),
-  BikeControllers.getAllBikes,
-);
+router.get('/', BikeControllers.getAllBikes);
 
 router.put(
   '/:id',

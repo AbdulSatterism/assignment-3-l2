@@ -3,6 +3,8 @@ import { BikeRoutes } from '../modules/bike/bike.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
 import { UserRoutes } from '../modules/user/user.route';
 import { BookingRoutes } from '../modules/booking/booking.route';
+import { ReviewRoutes } from '../modules/review/revies.route';
+import { contactRoute } from '../modules/contact/contact.route';
 
 const router = Router();
 
@@ -22,6 +24,14 @@ const moduleRoutes = [
   {
     path: '/rentals',
     route: BookingRoutes,
+  },
+  {
+    path: '/reviews',
+    route: ReviewRoutes,
+  },
+  {
+    path: '/contact',
+    route: contactRoute,
   },
 ];
 

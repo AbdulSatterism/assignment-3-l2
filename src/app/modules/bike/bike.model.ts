@@ -18,6 +18,10 @@ const bikeSchema = new Schema<TBike>({
     type: Boolean,
     default: true,
   },
+  image: {
+    type: String,
+    required: true,
+  },
   cc: {
     type: Number,
     required: true,
