@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TBike } from './bike.interface';
 import { Bike } from './bike.model';
 
@@ -6,8 +7,20 @@ const createBikesIntoDB = async (payload: TBike) => {
   return result;
 };
 
-const getAllBikesFromDB = async () => {
-  const result = await Bike.find();
+const getAllBikesFromDB = async (query: Record<string, unknown>) => {
+  const { search = '', brand, model } = query;
+
+  const filter = {} as any;
+  if (search) filter.name = { $regex: search, $options: 'i' };
+  if (brand) filter.brand = { $regex: brand, $options: 'i' };
+  if (brand) filter.model = { $regex: model, $options: 'i' };
+
+  const result = await Bike.find(filter);
+  return result;
+};
+
+const getSingleBikeFromDB = async (id: string) => {
+  const result = await Bike.findById(id);
   return result;
 };
 
@@ -30,6 +43,7 @@ const deleteBikeFromDB = async (id: string) => {
 export const BikeServices = {
   createBikesIntoDB,
   getAllBikesFromDB,
+  getSingleBikeFromDB,
   updateBikeIntoDB,
   deleteBikeFromDB,
 };
