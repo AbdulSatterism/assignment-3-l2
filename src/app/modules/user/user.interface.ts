@@ -8,6 +8,7 @@ export interface TUser {
   phone: string;
   address: string;
   role: 'admin' | 'user';
+  isDeleted?:boolean;
 }
 
 export interface UserModel extends Model<TUser> {

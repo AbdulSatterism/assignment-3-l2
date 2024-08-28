@@ -31,6 +31,10 @@ const userSchema = new Schema<TUser, UserModel>(
       type: String,
       enum: ['admin', 'user'],
     },
+    isDeleted: {
+      type: Boolean,
+      default:false
+    },
   },
   {
     timestamps: true,

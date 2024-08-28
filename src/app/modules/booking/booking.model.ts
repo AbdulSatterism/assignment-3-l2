@@ -21,6 +21,10 @@ const bookingSchema = new Schema<TBooking>({
     type: String,
     default: '',
   },
+  payment: {
+    type: String,
+    default: 'unpaid',
+  },
   totalCost: {
     type: Number,
     default: 0,
