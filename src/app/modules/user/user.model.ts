@@ -33,7 +33,7 @@ const userSchema = new Schema<TUser, UserModel>(
     },
     isDeleted: {
       type: Boolean,
-      default:false
+      default: false,
     },
   },
   {

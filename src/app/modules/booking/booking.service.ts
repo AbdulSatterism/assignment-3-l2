@@ -82,7 +82,7 @@ const returnBikesIntoDB = async (id: string) => {
 };
 
 const getAllBookingBike = async () => {
-  const result = await Booking.find().populate('bikeId');
+  const result = await Booking.find().populate('bikeId').populate('userId');
   return result;
 };
 

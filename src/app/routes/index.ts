@@ -5,6 +5,7 @@ import { UserRoutes } from '../modules/user/user.route';
 import { BookingRoutes } from '../modules/booking/booking.route';
 import { ReviewRoutes } from '../modules/review/revies.route';
 import { contactRoute } from '../modules/contact/contact.route';
+import { paymentRoute } from '../modules/payment/payment.route';
 
 const router = Router();
 
@@ -32,6 +33,10 @@ const moduleRoutes = [
   {
     path: '/contact',
     route: contactRoute,
+  },
+  {
+    path: '/rental-pay',
+    route: paymentRoute,
   },
 ];
 
