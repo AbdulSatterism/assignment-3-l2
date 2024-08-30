@@ -44,7 +44,7 @@ const successPayment = catchAsync(async (req, res) => {
     message = 'Sorry!! Your Payment Failed..!! Please Try again';
   }
 
-  const filePath = join(__dirname, '../../../payment.html');
+  const filePath = join(__dirname, '../../../../public/payment.html');
   let template = readFileSync(filePath, 'utf-8');
   template = template.replace('{{message}}', message);
 
