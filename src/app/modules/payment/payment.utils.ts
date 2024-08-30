@@ -14,15 +14,16 @@ type TPaymentData = {
   transId: string;
 };
 
+// https://assignment-3-one-nu.vercel.app/api
+
 export const initialPayment = async (paymentData: TPaymentData) => {
   try {
     const response = await axios.post(config.payment_url as string, {
       store_id: config.store_id,
       signature_key: config.signature_key,
       tran_id: paymentData.transId,
-      success_url: `https://assignment-3-one-nu.vercel.app/api/rental-pay/success?rentalId=${paymentData.rentalId}&transId=${paymentData.transId}&status=success`,
-      fail_url:
-        'https://assignment-3-one-nu.vercel.app/api/rental-pay/success?status=failed',
+      success_url: `http://localhost:5000/api/rental-pay/success?rentalId=${paymentData.rentalId}&transId=${paymentData.transId}&status=success`,
+      fail_url: 'http://localhost:5000/api/rental-pay/success?status=failed',
       cancel_url: 'http://localhost:5173/',
       amount: paymentData.amount,
       currency: 'BDT',

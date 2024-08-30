@@ -31,6 +31,17 @@ const updateBikeIntoDB = async (id: string, payload: Partial<TBike>) => {
   return result;
 };
 
+const updateRating = async (id: string) => {
+  const result = await Bike.findByIdAndUpdate(
+    id,
+    { $inc: { rating: 1 } },
+    {
+      new: true,
+    },
+  );
+  return result;
+};
+
 const deleteBikeFromDB = async (id: string) => {
   const result = await Bike.findByIdAndUpdate(
     id,
@@ -46,4 +57,5 @@ export const BikeServices = {
   getSingleBikeFromDB,
   updateBikeIntoDB,
   deleteBikeFromDB,
+  updateRating,
 };

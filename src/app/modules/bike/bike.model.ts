@@ -38,6 +38,10 @@ const bikeSchema = new Schema<TBike>({
     type: String,
     required: true,
   },
+  rating: {
+    type: Number,
+    default: 0,
+  },
 });
 
 export const Bike = model<TBike>('Bike', bikeSchema);

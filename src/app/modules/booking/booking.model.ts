@@ -33,6 +33,10 @@ const bookingSchema = new Schema<TBooking>({
     type: Boolean,
     default: false,
   },
+  coupon: {
+    type: String,
+    default: '',
+  },
 });
 
 bookingSchema.pre('save', async function (next) {

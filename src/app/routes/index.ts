@@ -6,6 +6,7 @@ import { BookingRoutes } from '../modules/booking/booking.route';
 import { ReviewRoutes } from '../modules/review/revies.route';
 import { contactRoute } from '../modules/contact/contact.route';
 import { paymentRoute } from '../modules/payment/payment.route';
+import { CouponRoutes } from '../modules/coupon/coupon.route';
 
 const router = Router();
 
@@ -37,6 +38,10 @@ const moduleRoutes = [
   {
     path: '/rental-pay',
     route: paymentRoute,
+  },
+  {
+    path: '/coupon',
+    route: CouponRoutes,
   },
 ];
 

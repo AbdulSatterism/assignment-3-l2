@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post(
   '/',
-  // auth(USER_ROLE.admin),
+  auth(USER_ROLE.admin),
   validateRequest(bikeValidations.createBikeValidationSchema),
   BikeControllers.createBike,
 );
@@ -23,6 +23,8 @@ router.put(
   validateRequest(bikeValidations.updateBikeValidationSchema),
   BikeControllers.updateBike,
 );
+
+router.patch('/rating/:id', BikeControllers.updateRating);
 
 router.delete('/:id', auth(USER_ROLE.admin), BikeControllers.deleteBike);
 

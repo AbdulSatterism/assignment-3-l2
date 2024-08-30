@@ -6,6 +6,7 @@ import { TBooking } from './booking.interface';
 import { Booking } from './booking.model';
 import { Bike } from '../bike/bike.model';
 import returnNewDate from './booking.utils';
+import { Coupon } from '../coupon/coupon.model';
 
 const createBookingIntoDB = async (payload: TBooking) => {
   const { userId, bikeId } = payload;
@@ -63,7 +64,18 @@ const returnBikesIntoDB = async (id: string) => {
   const differenceInMinutes = Math.floor(differenceInSeconds / 60);
   const differenceInHours = Math.floor(differenceInMinutes / 60);
 
-  const totalCost = differenceInHours * bikeInfo?.pricePerHour;
+  let totalCost = differenceInHours * bikeInfo?.pricePerHour;
+
+  //coupon check
+  const couponExist = await Coupon.findOne({ couponCode: bookingExist.coupon });
+
+  // if(!couponExist && (couponExist.couponCode as string  ) !== bookingExist.coupon){
+  //   throw new AppError(httpStatus.FORBIDDEN, 'failed find bike info');
+  // }
+
+  if (couponExist && couponExist.couponCode === bookingExist.coupon) {
+    totalCost = totalCost - totalCost * (couponExist.discount / 100);
+  }
 
   //update totalCost and
   const returnBooking = await Booking.findByIdAndUpdate(

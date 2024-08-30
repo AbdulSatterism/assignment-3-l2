@@ -48,6 +48,18 @@ const updateBike = catchAsync(async (req, res) => {
   });
 });
 
+const updateRating = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await BikeServices.updateRating(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Rating update',
+    data: result,
+  });
+});
+
 const deleteBike = catchAsync(async (req, res) => {
   const { id } = req.params;
   const result = await BikeServices.deleteBikeFromDB(id);
@@ -66,4 +78,5 @@ export const BikeControllers = {
   getSingleBike,
   updateBike,
   deleteBike,
+  updateRating,
 };

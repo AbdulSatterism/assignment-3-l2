@@ -3,9 +3,10 @@ export type TBike = {
   description: string;
   pricePerHour: number;
   isAvailable: boolean;
-  image:string;
+  image: string;
   cc: number;
   year: number;
   model: string;
   brand: string;
+  rating: number;
 };
