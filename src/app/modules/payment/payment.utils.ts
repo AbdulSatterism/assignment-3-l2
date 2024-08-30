@@ -23,7 +23,7 @@ export const initialPayment = async (paymentData: TPaymentData) => {
       success_url: `https://assignment-3-one-nu.vercel.app/api/rental-pay/success?rentalId=${paymentData.rentalId}&transId=${paymentData.transId}&status=success`,
       fail_url:
         'https://assignment-3-one-nu.vercel.app/api/rental-pay/success?status=failed',
-      cancel_url: 'http://localhost:5173/',
+      cancel_url: 'https://assignment-5-bike-rent.vercel.app/',
       amount: paymentData.amount,
       currency: 'BDT',
       desc: 'Merchant Registration Payment',
