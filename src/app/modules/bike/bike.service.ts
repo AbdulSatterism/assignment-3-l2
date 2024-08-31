@@ -15,7 +15,21 @@ const getAllBikesFromDB = async (query: Record<string, unknown>) => {
   if (brand) filter.brand = { $regex: brand, $options: 'i' };
   if (brand) filter.model = { $regex: model, $options: 'i' };
 
-  const result = await Bike.find(filter);
+  let page = 1;
+  let skip = 0;
+  let limit;
+  if (query?.limit) {
+    limit = Number(query.limit);
+  }
+
+  if (query?.page) {
+    page = Number(query.page);
+    skip = (page - 1) * (limit as number);
+  }
+
+  const result = await Bike.find(filter)
+    .skip(skip)
+    .limit(limit as number);
   return result;
 };
 
