@@ -64,7 +64,7 @@ const returnBikesIntoDB = async (id: string) => {
   const differenceInMinutes = Math.floor(differenceInSeconds / 60);
   const differenceInHours = Math.floor(differenceInMinutes / 60);
 
-  let totalCost = differenceInHours * bikeInfo?.pricePerHour;
+  let totalCost = Math.abs(differenceInHours * bikeInfo?.pricePerHour);
 
   //coupon check
   const couponExist = await Coupon.findOne({ couponCode: bookingExist.coupon });
@@ -74,7 +74,7 @@ const returnBikesIntoDB = async (id: string) => {
   // }
 
   if (couponExist && couponExist.couponCode === bookingExist.coupon) {
-    totalCost = totalCost - totalCost * (couponExist.discount / 100);
+    totalCost = Math.abs(totalCost - totalCost * (couponExist.discount / 100));
   }
 
   //update totalCost and
